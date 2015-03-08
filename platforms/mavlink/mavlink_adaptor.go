@@ -17,12 +17,12 @@ type MavlinkAdaptor struct {
 }
 
 // NewMavLinkAdaptor creates a new mavlink adaptor with specified name and port
-func NewMavlinkAdaptor(name string, port string) *MavlinkAdaptor {
+func NewMavlinkAdaptor(name string, port string, baudrate int) *MavlinkAdaptor {
 	return &MavlinkAdaptor{
 		name: name,
 		port: port,
 		connect: func(port string) (io.ReadWriteCloser, error) {
-			return serial.OpenPort(&serial.Config{Name: port, Baud: 57600})
+			return serial.OpenPort(&serial.Config{Name: port, Baud: baudrate})
 		},
 	}
 }
